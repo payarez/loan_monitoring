@@ -4,7 +4,7 @@ services:
     container_name: mysql-dev
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: payarez23
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     ports:
       - "3306:3306"
     volumes:
