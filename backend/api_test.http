@@ -1,0 +1,196 @@
+@baseUrl = http://localhost:8000
+@accessToken = "access_token_here"
+@refreshToken = "refresh_token_here"
+### ==================== AUTH ====================
+
+### 1. Registro
+POST {{baseUrl}}/api/auth/register/
+Content-Type: application/json
+
+{
+    "username": "user",
+    "email": "user@gmail.com",
+    "password": "Test1234**"
+}
+
+### 2. Login
+POST {{baseUrl}}/api/auth/login/
+Content-Type: application/json
+
+{
+    "username": "user",
+    "password": "Test1234**"
+}
+
+### 3. Refresh token
+POST {{baseUrl}}/api/auth/refresh/
+Content-Type: application/json
+
+{
+    "refresh": "{{refreshToken}}"
+}
+
+### ==================== PROFILE ====================
+
+### 4. Ver perfil
+GET {{baseUrl}}/api/auth/profile/
+Authorization: Bearer {{accessToken}}
+
+### 5. Actualizar perfil
+PUT {{baseUrl}}/api/auth/profile/
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+    "username": "test_user",
+    "email": "user_test@gmail.com",
+    "language": "es",
+    "theme": "dark"
+}
+
+### ==================== CATEGORIES ====================
+
+### 6. Listar categorías
+GET {{baseUrl}}/api/categories/
+Authorization: Bearer {{accessToken}}
+
+### 7. Crear categoría
+POST {{baseUrl}}/api/categories/
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+    "name": "testing_category",
+    "description": "lorem ipsum dolor sit amet"
+}
+
+### 8. Ver categoría
+GET {{baseUrl}}/api/categories/1/
+Authorization: Bearer {{accessToken}}
+
+### 9. Actualizar categoría
+PUT {{baseUrl}}/api/categories/1/
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+    "name": "testing_category",
+    "description": "lorem ipsum dolor sit amet, updated"
+}
+
+### 10. Eliminar categoría
+DELETE {{baseUrl}}/api/categories/1/
+Authorization: Bearer {{accessToken}}
+
+### ==================== ITEMS ====================
+
+### 11. Listar ítems
+GET {{baseUrl}}/api/items/
+Authorization: Bearer {{accessToken}}
+
+### 12. Crear ítem
+POST {{baseUrl}}/api/items/
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+    "name": "test_item",
+    "description": "lorem ipsum dolor sit amet",
+    "category": 1
+}
+
+### 13. Ver ítem
+GET {{baseUrl}}/api/items/1/
+Authorization: Bearer {{accessToken}}
+
+### 14. Actualizar ítem
+PUT {{baseUrl}}/api/items/1/
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+    "name": "test_item",
+    "description": "lorem ipsum dolor sit amet, updated",
+    "category": 1
+}
+
+### 15. Eliminar ítem
+DELETE {{baseUrl}}/api/items/1/
+Authorization: Bearer {{accessToken}}
+
+### ==================== BORROWERS ====================
+
+### 16. Listar prestatarios
+GET {{baseUrl}}/api/borrowers/
+Authorization: Bearer {{accessToken}}
+
+### 17. Crear prestatario
+POST {{baseUrl}}/api/borrowers/
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+    "name": "Person 1",
+    "contact_info": "3000000000"
+}
+
+### 18. Ver prestatario
+GET {{baseUrl}}/api/borrowers/1/
+Authorization: Bearer {{accessToken}}
+
+### 19. Actualizar prestatario
+PUT {{baseUrl}}/api/borrowers/1/
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+    "name": "Person 1",
+    "contact_info": "3000000000, updated"
+}
+
+### 20. Eliminar prestatario
+DELETE {{baseUrl}}/api/borrowers/1/
+Authorization: Bearer {{accessToken}}
+
+### ==================== LOANS ====================
+
+### 21. Listar préstamos
+GET {{baseUrl}}/api/loans/
+Authorization: Bearer {{accessToken}}
+
+### 22. Listar préstamos activos
+GET {{baseUrl}}/api/loans/?status=active
+Authorization: Bearer {{accessToken}}
+
+### 23. Listar préstamos devueltos
+GET {{baseUrl}}/api/loans/?status=returned
+Authorization: Bearer {{accessToken}}
+
+### 24. Listar préstamos vencidos
+GET {{baseUrl}}/api/loans/?status=overdue
+Authorization: Bearer {{accessToken}}
+
+### 25. Crear préstamo
+POST {{baseUrl}}/api/loans/
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+    "item": 1,
+    "borrower": 1,
+    "lent_at": "2026-06-20T10:00:00Z",
+    "due_at": "2026-06-27T10:00:00Z",
+    "notes": "Préstamo de prueba"
+}
+
+### 26. Ver préstamo
+GET {{baseUrl}}/api/loans/1/
+Authorization: Bearer {{accessToken}}
+
+### 27. Marcar como devuelto
+POST {{baseUrl}}/api/loans/1/return_loan/
+Authorization: Bearer {{accessToken}}
+
+### 28. Eliminar préstamo
+DELETE {{baseUrl}}/api/loans/1/
+Authorization: Bearer {{accessToken}}

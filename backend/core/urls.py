@@ -19,6 +19,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from myapps.category.views import CategoryViewSet
 from myapps.item.views import ItemViewSet
 from myapps.borrower.views import BorrowerViewSet
@@ -33,5 +34,7 @@ router.register(r'loans', LoanViewSet, basename='loan')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth/', include('myapps.user.urls')),
+    path('api/auth/login/', TokenObtainPairView.as_view(), name='login'),
+    path('api/auth/refresh/', TokenRefreshView.as_view(), name='refresh'),
     path('api/', include(router.urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
