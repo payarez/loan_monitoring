@@ -1,6 +1,6 @@
 @baseUrl = http://localhost:8000
-@accessToken = "access_token_here"
-@refreshToken = "refresh_token_here"
+@accessToken = "ACCESS_TOKEN_HERE"
+@refreshToken = "REFRESH_TOKEN_HERE" 
 ### ==================== AUTH ====================
 
 ### 1. Registro
@@ -194,3 +194,24 @@ Authorization: Bearer {{accessToken}}
 ### 28. Eliminar préstamo
 DELETE {{baseUrl}}/api/loans/1/
 Authorization: Bearer {{accessToken}}
+
+### ==================== LOGOUT Y PASSWORD ====================
+
+### Logout
+POST {{baseUrl}}/api/auth/logout/
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+    "refresh": "{{refreshToken}}"
+}
+
+### Cambiar contraseña
+POST {{baseUrl}}/api/auth/change-password/
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+    "old_password": "Test1234**",
+    "new_password": "Test12345**"
+}
