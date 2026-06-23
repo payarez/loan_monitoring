@@ -1,1 +1,21 @@
-<p>header works!</p>
+<header class="flex items-center justify-between px-6 py-4 bg-green-100 border-b border-green-200">
+  
+  <!-- Page title -->
+  <div class="flex items-center gap-3">
+    <i class="pi pi-home text-green-800"></i>
+    <h2 class="text-lg font-semibold text-green-800">Inicio</h2>
+  </div>
+
+  <!-- Right side -->
+  <div class="flex items-center gap-4">
+    <!-- Date -->
+    <span class="text-sm text-green-700">{{ currentDate }}</span>
+
+    <!-- New loan button -->
+    <button class="flex items-center gap-2 px-4 py-2 bg-white rounded-full border border-green-300 hover:bg-green-50 transition-colors text-sm font-medium">
+      <i class="pi pi-plus"></i>
+      Nuevo préstamo
+    </button>
+  </div>
+
+</header>
