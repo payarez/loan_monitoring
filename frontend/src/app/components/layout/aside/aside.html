@@ -1,37 +1,42 @@
-<aside class="w-64 h-screen flex flex-col bg-green-100">
-  
+<aside class="w-64 h-screen flex flex-col bg-white border-r border-gray-200">
+
   <!-- Logo -->
-  <div class="p-6 border-b border-green-200">
-    <h1 class="text-xl font-bold text-green-800">Monitor de Préstamos</h1>
+  <div class="flex items-center gap-3 px-4 py-5">
+    <div class="bg-green-100 rounded-xl p-2">
+      <i class="pi pi-chart-line text-green-600 text-xl"></i>
+    </div>
+    <span class="text-base font-semibold text-gray-900 leading-tight">Monitor de<br>Préstamos</span>
   </div>
 
+  <hr class="mx-4 border-gray-200">
+
   <!-- Navigation -->
-  <nav class="flex-1 p-4">
-    <ul class="space-y-2">
+  <nav class="flex-1 p-3">
+    <ul class="space-y-1">
       <li>
-        <a routerLink="/dashboard" routerLinkActive="bg-green-300"
-          class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-green-200 transition-colors cursor-pointer">
+        <a routerLink="/dashboard" routerLinkActive="bg-green-100 text-green-700 font-medium"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-green-50 hover:text-green-700 text-gray-700 transition-colors cursor-pointer text-sm">
           <i class="pi pi-home"></i>
           <span>Inicio</span>
         </a>
       </li>
       <li>
-        <a routerLink="/loans" routerLinkActive="bg-green-300"
-          class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-green-200 transition-colors cursor-pointer">
+        <a routerLink="/loans" routerLinkActive="bg-green-100 text-green-700 font-medium"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-green-50 hover:text-green-700 text-gray-700 transition-colors cursor-pointer text-sm">
           <i class="pi pi-list"></i>
           <span>Préstamos</span>
         </a>
       </li>
       <li>
-        <a routerLink="/categories" routerLinkActive="bg-green-300"
-          class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-green-200 transition-colors cursor-pointer">
+        <a routerLink="/categories" routerLinkActive="bg-green-100 text-green-700 font-medium"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-green-50 hover:text-green-700 text-gray-700 transition-colors cursor-pointer text-sm">
           <i class="pi pi-tag"></i>
           <span>Categorías</span>
         </a>
       </li>
       <li>
-        <a routerLink="/borrowers" routerLinkActive="bg-green-300"
-          class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-green-200 transition-colors cursor-pointer">
+        <a routerLink="/borrowers" routerLinkActive="bg-green-100 text-green-700 font-medium"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-green-50 hover:text-green-700 text-gray-700 transition-colors cursor-pointer text-sm">
           <i class="pi pi-users"></i>
           <span>Personas</span>
         </a>
@@ -39,10 +44,10 @@
     </ul>
   </nav>
 
-  <!-- Settings at bottom -->
-  <div class="p-4 border-t border-green-200">
-    <a routerLink="/settings" routerLinkActive="bg-green-300"
-      class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-green-200 transition-colors cursor-pointer">
+  <!-- Settings -->
+  <div class="p-3 border-t border-gray-200">
+    <a routerLink="/settings" routerLinkActive="bg-green-100 text-green-700 font-medium"
+      class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-green-50 hover:text-green-700 text-gray-700 transition-colors cursor-pointer text-sm">
       <i class="pi pi-cog"></i>
       <span>Configuración</span>
     </a>

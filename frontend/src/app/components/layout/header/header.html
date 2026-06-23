@@ -1,19 +1,20 @@
-<header class="flex items-center justify-between px-6 py-4 bg-green-100 border-b border-green-200">
-  
+<header class="flex items-center justify-between px-6 py-4 bg-white border-b border-gray-200">
+
   <!-- Page title -->
   <div class="flex items-center gap-3">
-    <i class="pi pi-home text-green-800"></i>
-    <h2 class="text-lg font-semibold text-green-800">Inicio</h2>
+    <div class="bg-green-100 rounded-lg p-1.5">
+      <i [class]="currentPage.icon + ' text-green-600 text-base'"></i>
+    </div>
+    <h2 class="text-sm font-medium text-gray-900">{{ currentPage.label }}</h2>
   </div>
 
   <!-- Right side -->
   <div class="flex items-center gap-4">
     <!-- Date -->
-    <span class="text-sm text-green-700">{{ currentDate }}</span>
-
+    <span class="text-sm text-gray-500">{{ currentDate }}</span>
     <!-- New loan button -->
-    <button class="flex items-center gap-2 px-4 py-2 bg-white rounded-full border border-green-300 hover:bg-green-50 transition-colors text-sm font-medium">
-      <i class="pi pi-plus"></i>
+    <button class="flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-full transition-colors text-sm font-medium">
+      <i class="pi pi-plus text-xs"></i>
       Nuevo préstamo
     </button>
   </div>
