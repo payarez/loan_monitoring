@@ -1,1 +1,80 @@
-<p>dashboard works!</p>
+<div class="flex flex-col gap-6">
+
+    <!-- KPI Cards -->
+    <div class="flex justify-evenly gap-4">
+
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-green-100">
+            <div class="flex items-center justify-between mb-2">
+                <span class="text-sm text-gray-500">Activos</span>
+                <i class="pi pi-clock text-green-500"></i>
+            </div>
+            <p class="text-3xl font-bold text-green-700 px-4">{{ activeLoans }}</p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-red-100">
+            <div class="flex items-center justify-between mb-2">
+                <span class="text-sm text-gray-500">Tardíos</span>
+                <i class="pi pi-exclamation-triangle text-red-500"></i>
+            </div>
+            <p class="text-3xl font-bold text-red-600 px-4">{{ overdueLoans }}</p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+            <div class="flex items-center justify-between mb-2">
+                <span class="text-sm text-gray-500">Prestados</span>
+                <i class="pi pi-check-circle text-gray-500"></i>
+            </div>
+            <p class="text-3xl font-bold text-gray-600 px-5">{{ returnedLoans }}</p>
+        </div>
+
+    </div>
+
+    <!-- Filters -->
+    <div class="flex items-center gap-3">
+        <p-selectbutton [options]="filterOptions" [(ngModel)]="selectedFilter" optionLabel="label" optionValue="value">
+        </p-selectbutton>
+
+        <div class="ml-auto">
+            <p-iconfield>
+                <p-inputicon styleClass="pi pi-search" />
+                <input pInputText type="text" [(ngModel)]="searchQuery" placeholder="Buscar..." />
+            </p-iconfield>
+        </div>
+    </div>
+
+    <!-- Recent loans table -->
+    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+        <h3 class="text-base font-semibold text-gray-700 mb-4">Préstamos recientes</h3>
+
+        <p-table [value]="filteredLoans" [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template #header>
+                <tr>
+                    <th>Objeto</th>
+                    <th>Persona</th>
+                    <th>Fecha préstamo</th>
+                    <th>Fecha devolución</th>
+                    <th>Estado</th>
+                </tr>
+            </ng-template>
+            <ng-template #body let-loan>
+                <tr>
+                    <td>{{ loan.item }}</td>
+                    <td>{{ loan.borrower }}</td>
+                    <td>{{ loan.lent_at | date:'dd/MM/yyyy' }}</td>
+                    <td>{{ loan.due_at | date:'dd/MM/yyyy' }}</td>
+                    <td>
+                        <p-tag [value]="loan.status"
+                            [severity]="loan.status === 'active' ? 'success' : loan.status === 'overdue' ? 'danger' : 'secondary'">
+                        </p-tag>
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template #empty>
+                <tr>
+                    <td colspan="5" class="text-center text-gray-400 py-8">No hay préstamos registrados</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+
+</div>
