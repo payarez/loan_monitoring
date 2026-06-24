@@ -7,8 +7,10 @@ import { Borrowers } from './pages/borrowers/borrowers';
 import { Settings } from './pages/settings/settings';
 import { Login } from './pages/auth/login/login';
 import { Register } from './pages/auth/register/register';
+import { Landing } from './pages/landing/landing';
 
 export const routes: Routes = [
+    { path: '', component: Landing },
     {
         path: 'auth',
         children: [
@@ -18,7 +20,7 @@ export const routes: Routes = [
         ]
     },
     {
-        path: '',
+        path: 'app',
         component: MainLayout,
         children: [
             { path: 'dashboard', component: Dashboard },
@@ -29,5 +31,5 @@ export const routes: Routes = [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
         ]
     },
-    { path: '**', redirectTo: 'dashboard' }
+    { path: '**', redirectTo: '' }
 ];

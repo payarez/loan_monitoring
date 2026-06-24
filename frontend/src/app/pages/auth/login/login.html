@@ -1,1 +1,35 @@
-<p>login works!</p>
+<div class="min-h-screen flex items-center justify-center bg-green-50">
+  <div class="bg-white rounded-2xl shadow-sm border border-green-100 p-8 w-full max-w-md">
+    
+    <!-- Logo -->
+    <div class="text-center mb-8">
+      <h1 class="text-2xl font-bold text-green-800">Monitor de Préstamos</h1>
+      <p class="text-sm text-gray-500 mt-1">Inicia sesión para continuar</p>
+    </div>
+
+    <!-- Form -->
+    <div class="flex flex-col gap-4">
+      
+      <div class="flex flex-col gap-1">
+        <label class="text-sm font-medium text-gray-700">Usuario</label>
+        <input pInputText [(ngModel)]="username" placeholder="Ingresa tu usuario" class="w-full" />
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label class="text-sm font-medium text-gray-700">Contraseña</label>
+        <p-password [(ngModel)]="password" [feedback]="false" [toggleMask]="true" 
+          placeholder="Ingresa tu contraseña" styleClass="w-full" inputStyleClass="w-full">
+        </p-password>
+      </div>
+
+      <p-button label="Iniciar sesión" styleClass="w-full mt-2" (onClick)="login()"></p-button>
+
+      <p class="text-center text-sm text-gray-500">
+        ¿No tienes cuenta? 
+        <a routerLink="/auth/register" class="text-green-700 font-medium hover:underline cursor-pointer">Regístrate</a>
+      </p>
+
+    </div>
+
+  </div>
+</div>
