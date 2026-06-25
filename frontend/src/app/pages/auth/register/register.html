@@ -1,40 +1,95 @@
-<div class="min-h-screen flex items-center justify-center bg-green-50">
-  <div class="bg-white rounded-2xl shadow-sm border border-green-100 p-8 w-full max-w-md">
+<div class="min-h-screen bg-slate-950 flex flex-col">
 
-    <!-- Logo -->
-    <div class="text-center mb-8">
-      <h1 class="text-2xl font-bold text-green-800">Monitor de Préstamos</h1>
-      <p class="text-sm text-gray-500 mt-1">Crea tu cuenta</p>
+  <!-- Navbar -->
+  <nav class="w-full px-6 py-4 border-b border-slate-800/60">
+    <div class="max-w-6xl mx-auto flex items-center">
+      <a routerLink="/" class="flex items-center gap-2.5 shrink-0 hover:opacity-80 transition-opacity duration-200">
+        <div class="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center">
+          <i class="pi pi-verified text-white text-sm"></i>
+        </div>
+        <span class="text-lg font-extrabold text-white tracking-tight">Loan Monitoring</span>
+      </a>
     </div>
+  </nav>
 
-    <!-- Form -->
-    <div class="flex flex-col gap-4">
+  <!-- Content -->
+  <div class="flex-1 flex items-center justify-center px-6 py-12">
+    <div class="w-full max-w-md">
 
-      <div class="flex flex-col gap-1">
-        <label class="text-sm font-medium text-gray-700">Usuario</label>
-        <input pInputText [(ngModel)]="username" placeholder="Ingresa tu usuario" class="w-full" />
+      <!-- Header -->
+      <div class="text-center mb-8">
+        <h1 class="text-3xl font-bold text-white mb-2">Crea tu cuenta</h1>
+        <p class="text-slate-400">Empieza a controlar tus préstamos hoy</p>
       </div>
 
-      <div class="flex flex-col gap-1">
-        <label class="text-sm font-medium text-gray-700">Correo electrónico</label>
-        <input pInputText [(ngModel)]="email" type="email" placeholder="Ingresa tu correo" class="w-full" />
+      <!-- Card -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 shadow-xl">
+        <div class="flex flex-col gap-5">
+
+          <!-- Username -->
+          <div class="flex flex-col gap-1.5">
+            <label class="text-sm font-medium text-slate-300">Usuario</label>
+            <input
+              pInputText
+              [(ngModel)]="username"
+              placeholder="Ingresa tu usuario"
+              class="w-full !bg-slate-800 !border-slate-700 !text-white placeholder:!text-slate-500 !rounded-xl focus:!border-green-500 transition-colors duration-200" />
+          </div>
+
+          <!-- Email -->
+          <div class="flex flex-col gap-1.5">
+            <label class="text-sm font-medium text-slate-300">Correo electrónico</label>
+            <input
+              pInputText
+              [(ngModel)]="email"
+              type="email"
+              placeholder="Ingresa tu correo"
+              class="w-full !bg-slate-800 !border-slate-700 !text-white placeholder:!text-slate-500 !rounded-xl focus:!border-green-500 transition-colors duration-200" />
+          </div>
+
+          <!-- Password -->
+          <div class="flex flex-col gap-1.5">
+            <label class="text-sm font-medium text-slate-300">Contraseña</label>
+            <p-password
+              [(ngModel)]="password"
+              [toggleMask]="true"
+              placeholder="Ingresa tu contraseña"
+              styleClass="w-full"
+              inputStyleClass="w-full !bg-slate-800 !border-slate-700 !text-white placeholder:!text-slate-500 !rounded-xl">
+            </p-password>
+          </div>
+
+          <!-- Button -->
+          <button
+            (click)="register()"
+            class="w-full mt-1 py-3 px-4 bg-green-500 hover:bg-green-400 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg shadow-green-500/20 hover:-translate-y-0.5">
+            Crear cuenta
+          </button>
+
+          <!-- Divider -->
+          <div class="flex items-center gap-3">
+            <div class="flex-1 h-px bg-slate-800"></div>
+            <span class="text-xs text-slate-600">o</span>
+            <div class="flex-1 h-px bg-slate-800"></div>
+          </div>
+
+          <!-- Login link -->
+          <p class="text-center text-sm text-slate-500">
+            ¿Ya tienes cuenta?
+            <a routerLink="/auth/login" class="text-green-400 font-medium hover:text-green-300 transition-colors duration-200 ml-1">
+              Inicia sesión
+            </a>
+          </p>
+
+        </div>
       </div>
 
-      <div class="flex flex-col gap-1">
-        <label class="text-sm font-medium text-gray-700">Contraseña</label>
-        <p-password [(ngModel)]="password" [toggleMask]="true"
-          placeholder="Ingresa tu contraseña" styleClass="w-full" inputStyleClass="w-full">
-        </p-password>
-      </div>
-
-      <p-button label="Registrarse" styleClass="w-full mt-2" (onClick)="register()"></p-button>
-
-      <p class="text-center text-sm text-gray-500">
-        ¿Ya tienes cuenta?
-        <a routerLink="/auth/login" class="text-green-700 font-medium hover:underline cursor-pointer">Inicia sesión</a>
+      <!-- Footer note -->
+      <p class="text-center text-xs text-slate-600 mt-6">
+        Sin compromiso · No requiere tarjeta
       </p>
 
     </div>
-
   </div>
+
 </div>
