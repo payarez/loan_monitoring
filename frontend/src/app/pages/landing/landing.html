@@ -1,231 +1,229 @@
-<div class="min-h-screen overflow-hidden">
+<div class="min-h-screen bg-slate-950 overflow-x-hidden">
 
-    <!-- Navbar -->
-    <nav class="fixed top-0 w-full bg-green-950 backdrop-blur-xl border-b border-green-800 z-50">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center">
+  <!-- Navbar -->
+  <nav class="fixed top-0 w-full bg-slate-950/80 backdrop-blur-xl border-b border-slate-800/60 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center">
 
-            <!-- Logo with icon -->
-            <a href="#top" class="flex items-center gap-2.5">
-                <i class="pi pi-verified text-green-300 text-xl"></i>
-                <span class="text-xl font-extrabold text-white tracking-tight">Loan Monitoring</span>
-            </a>
+      <a href="#top" class="flex items-center gap-2.5 shrink-0">
+        <div class="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center">
+          <i class="pi pi-verified text-white text-sm"></i>
+        </div>
+        <span class="text-lg font-extrabold text-white tracking-tight">Loan Monitoring</span>
+      </a>
 
-            <!-- Nav links -->
-            <div class="hidden md:flex items-center gap-6 ml-14">
-                <a href="#features" class="text-sm font-semibold text-white hover:text-green-400 transition-colors">
-                    Características
-                </a>
-                <a href="#reviews" class="text-sm font-semibold text-white hover:text-green-400 transition-colors">
-                    Reseñas
-                </a>
-                <a href="#cta" class="text-sm font-semibold text-white hover:text-green-400 transition-colors">
-                    Comenzar
-                </a>
+      <div class="hidden md:flex items-center gap-8 ml-12">
+        <a href="#features" class="text-sm font-medium text-slate-400 hover:text-white transition-colors duration-200">
+          Características
+        </a>
+        <a href="#reviews" class="text-sm font-medium text-slate-400 hover:text-white transition-colors duration-200">
+          Reseñas
+        </a>
+        <a href="#cta" class="text-sm font-medium text-slate-400 hover:text-white transition-colors duration-200">
+          Comenzar
+        </a>
+      </div>
+
+      <div class="flex items-center gap-3 ml-auto">
+        <a routerLink="/auth/login"
+          class="text-sm font-medium text-slate-300 hover:text-white px-4 py-2 rounded-xl border border-slate-700 hover:border-slate-500 transition-all duration-200">
+          Iniciar sesión
+        </a>
+        <a routerLink="/auth/register"
+          class="text-sm font-semibold bg-green-500 hover:bg-green-400 text-white px-4 py-2 rounded-xl transition-all duration-200 shadow-lg shadow-green-500/20">
+          Registrarse
+        </a>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="relative pt-36 pb-24 px-6">
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-green-500/10 rounded-full blur-3xl"></div>
+      <div class="absolute top-20 right-0 w-72 h-72 bg-emerald-400/8 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="relative max-w-4xl mx-auto text-center">
+      <span class="inline-flex items-center gap-2 px-4 py-1.5 bg-green-500/10 border border-green-500/20 text-green-400 text-sm font-medium rounded-full mb-8">
+        <span class="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
+        Monitoreo de préstamos simple y efectivo
+      </span>
+
+      <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-[1.05] tracking-tight">
+        Controla tus préstamos
+        <span class="text-green-400 block mt-1">sin perder el hilo</span>
+      </h1>
+
+      <p class="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+        Registra, organiza y haz seguimiento a los objetos que prestas.
+        Sabe siempre quién tiene qué, desde cuándo y en qué condiciones.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a routerLink="/auth/register"
+          class="inline-flex items-center gap-2 px-8 py-3.5 bg-green-500 hover:bg-green-400 text-white font-semibold rounded-xl transition-all duration-200 shadow-xl shadow-green-500/25 hover:shadow-green-400/30 hover:-translate-y-0.5">
+          Comenzar gratis
+          <i class="pi pi-arrow-right text-sm"></i>
+        </a>
+        <a routerLink="/auth/login"
+          class="inline-flex items-center gap-2 px-8 py-3.5 bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold rounded-xl border border-slate-700 hover:border-slate-600 transition-all duration-200 hover:-translate-y-0.5">
+          Ya tengo cuenta
+        </a>
+      </div>
+
+      <p class="text-sm text-slate-600 mt-5">Sin compromiso · No requiere tarjeta</p>
+    </div>
+  </section>
+
+  <!-- Trust -->
+  <section class="py-14 px-6 border-y border-slate-800/60">
+    <div class="max-w-5xl mx-auto">
+      <p class="text-center text-xs font-semibold text-slate-500 uppercase tracking-widest mb-10">
+        Ideal para gestionar cualquier tipo de objeto
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
+        @for (item of trustItems; track item.label) {
+          <div class="flex flex-col items-center gap-2.5 group cursor-default">
+            <div class="w-12 h-12 bg-slate-800 group-hover:bg-green-500/10 border border-slate-700 group-hover:border-green-500/30 rounded-xl flex items-center justify-center transition-all duration-300">
+              <i class="pi {{ item.icon }} text-slate-400 group-hover:text-green-400 text-lg transition-colors duration-300"></i>
+            </div>
+            <span class="text-xs font-medium text-slate-500 group-hover:text-slate-300 transition-colors duration-300">{{ item.label }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="py-24 md:py-32 px-6 scroll-mt-20">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Todo lo que necesitas</h2>
+        <p class="text-lg text-slate-400 max-w-xl mx-auto">
+          Tres pilares para mantener el control total de tus objetos prestados
+        </p>
+      </div>
+
+      <!-- Desktop grid / Mobile horizontal scroll -->
+      <div class="flex md:grid md:grid-cols-3 gap-5 overflow-x-auto snap-x snap-mandatory scrollbar-none pb-4 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0">
+        @for (f of features; track f.title; let i = $index) {
+          <div class="group relative flex flex-col flex-shrink-0 w-72 md:w-auto snap-start p-7 rounded-2xl bg-slate-900 border border-slate-800 hover:border-green-500/40 hover:bg-slate-800/80 shadow-sm hover:shadow-xl hover:shadow-green-500/5 hover:-translate-y-1 transition-all duration-300">
+            <div class="w-12 h-12 rounded-xl bg-green-500/10 border border-green-500/20 flex items-center justify-center mb-5 transition-all duration-300 group-hover:scale-110 group-hover:bg-green-500/20">
+              <i class="pi {{ f.icon }} text-green-400 text-xl"></i>
+            </div>
+            <h3 class="text-lg font-semibold text-white mb-2">{{ f.title }}</h3>
+            <p class="text-sm text-slate-400 leading-relaxed flex-1">{{ f.desc }}</p>
+            <div class="flex items-center gap-1.5 mt-5 text-sm font-medium text-green-400">
+              <span>{{ f.highlight }}</span>
+              <i class="pi pi-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section id="reviews" class="py-24 md:py-32 px-6 bg-slate-900/50 border-y border-slate-800/60 scroll-mt-20">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Lo que dicen los usuarios</h2>
+        <p class="text-lg text-slate-400 max-w-xl mx-auto">
+          Personas que ya recuperaron el control de sus préstamos
+        </p>
+      </div>
+
+      <div class="flex md:grid md:grid-cols-3 gap-5 overflow-x-auto snap-x snap-mandatory scrollbar-none pb-4 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0">
+        @for (r of reviews; track r.name; let i = $index) {
+          <div class="group relative flex flex-col flex-shrink-0 w-72 md:w-auto snap-start bg-slate-900 border border-slate-800 hover:border-slate-700 rounded-2xl p-7 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <i class="pi pi-quote-left absolute top-5 right-5 text-slate-700 text-2xl pointer-events-none"></i>
+
+            <div class="flex items-center gap-0.5 mb-5">
+              @for (star of [1,2,3,4,5]; track star) {
+                <i class="pi pi-star-fill text-amber-400 text-xs"></i>
+              }
             </div>
 
-            <!-- Actions -->
-            <div class="flex items-center gap-4 ml-auto">
-                <a routerLink="/auth/login"
-                    class="text-sm font-semibold text-white transition-colors border border-white px-4 py-2 rounded-lg hover:bg-green-100/20 transition-colors shadow-sm">
-                    Iniciar sesión
-                </a>
-                <a routerLink="/auth/register"
-                    class="text-sm font-semibold bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors shadow-sm">
-                    Registrarse
-                </a>
-            </div>
-
-        </div>
-    </nav>
-
-    <!-- Hero -->
-    <section class="relative pt-32 pb-28 px-6 bg-gradient-to-b from-green-50 to-white">
-        <div class="absolute inset-0 overflow-hidden pointer-events-none">
-            <div class="absolute -top-40 -right-40 w-96 h-96 bg-green-200/40 rounded-full blur-3xl"></div>
-            <div class="absolute -bottom-40 -left-40 w-[32rem] h-[32rem] bg-green-300/25 rounded-full blur-3xl"></div>
-            <div class="absolute top-1/2 left-1/3 w-64 h-64 bg-emerald-200/20 rounded-full blur-3xl"></div>
-        </div>
-        <div class="relative max-w-4xl mx-auto text-center">
-
-            <h2
-                class="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-[1.1] tracking-tight animate-fade-in-up">
-                Controla tus préstamos
-                <span class="text-gray-900 block">sin perder el hilo</span>
-            </h2>
-            <p
-                class="text-lg md:text-xl text-gray-500 mb-10 max-w-2xl mx-auto leading-relaxed animate-fade-in-up animate-delay-100">
-                Registra, organiza y haz seguimiento a los objetos que prestas.
-                Sabe siempre quién tiene qué, desde cuándo y en qué condiciones.
+            <p class="text-slate-300 text-sm leading-relaxed flex-1 whitespace-normal break-words">
+              "{{ r.content }}"
             </p>
-            <div
-                class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up animate-delay-200">
-                <a routerLink="/auth/register">
-                    <p-button [rounded]="true" label="Comenzar gratis" size="large" />
-                </a>
-                <a routerLink="/auth/login">
-                    <p-button [rounded]="true" label="Ya tengo cuenta" [outlined]="true" size="large" />
-                </a>
-            </div>
-            <p class="text-sm text-gray-400 mt-4 animate-fade-in animate-delay-300">
-                Sin compromiso. No requiere tarjeta.
-            </p>
-        </div>
-    </section>
 
-    <!-- Trust: categorías que puedes gestionar -->
-    <section class="py-16 px-6 bg-green-800 border-t border-green-700">
-        <div class="max-w-5xl mx-auto">
-            <p class="text-center text-sm font-medium text-green-300 uppercase tracking-wider mb-8">
-                Ideal para gestionar cualquier tipo de objeto
-            </p>
-            <div class="flex flex-wrap items-center justify-center gap-x-10 gap-y-6">
-                @for (item of trustItems; track item.label) {
-                <div class="flex flex-col items-center gap-2">
-                    <div class="w-12 h-12 bg-green-700 rounded-xl flex items-center justify-center">
-                        <i class="pi {{ item.icon }} text-lg text-green-200"></i>
-                    </div>
-                    <span class="text-sm font-medium text-green-200">{{ item.label }}</span>
-                </div>
-                }
+            <div class="flex items-center gap-3 pt-5 mt-5 border-t border-slate-800 min-w-0">
+              <div class="w-9 h-9 rounded-full flex items-center justify-center text-white text-xs font-bold shrink-0"
+                [class]="r.gradient">
+                {{ r.initials }}
+              </div>
+              <div class="min-w-0 flex-1">
+                <p class="text-sm font-semibold text-white truncate">{{ r.name }}</p>
+                <p class="text-xs text-slate-500 truncate">{{ r.role }}</p>
+              </div>
             </div>
-        </div>
-    </section>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
 
-    <!-- Features: 3 pilares -->
-    <section id="features" class="py-24 md:py-32 px-6 bg-white scroll-mt-24">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Todo lo que necesitas</h3>
-                <p class="text-lg text-gray-500 max-w-xl mx-auto">
-                    Tres pilares para mantener el control total de tus objetos prestados
-                </p>
-            </div>
+  <!-- CTA -->
+  <section id="cta" class="relative py-24 md:py-32 px-6 overflow-hidden scroll-mt-20">
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900"></div>
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-green-500/8 rounded-full blur-3xl"></div>
+    </div>
+    <div class="relative max-w-2xl mx-auto text-center">
+      <h2 class="text-3xl md:text-5xl font-bold text-white mb-4 leading-tight">
+        ¿Listo para tomar el control?
+      </h2>
+      <p class="text-slate-400 mb-10 text-lg leading-relaxed">
+        Crea tu cuenta gratis y empieza a registrar tus préstamos hoy mismo.
+      </p>
+      <a routerLink="/auth/register"
+        class="inline-flex items-center gap-2 px-8 py-4 bg-green-500 hover:bg-green-400 text-white font-semibold rounded-xl transition-all duration-200 shadow-xl shadow-green-500/25 hover:-translate-y-0.5 text-lg">
+        Crear cuenta gratis
+        <i class="pi pi-arrow-right"></i>
+      </a>
+      <p class="text-slate-600 text-sm mt-5">No requiere tarjeta de crédito · Cancela cuando quieras</p>
+    </div>
+  </section>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                @for (f of features; track f.title; let i = $index) {
-                <div class="relative group p-8 rounded-2xl border border-green-100 bg-green-50/60 shadow-sm hover:shadow-lg hover:shadow-green-200/50 hover:-translate-y-1 transition-all duration-300 animate-fade-in-up"
-                    [style.animation-delay]="i * 120 + 'ms'">
-                    <div
-                        class="w-14 h-14 rounded-2xl flex items-center justify-center mb-5 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 bg-green-200">
-                        <i class="pi {{ f.icon }} text-green-700 text-2xl"></i>
-                    </div>
-                    <h4 class="text-xl font-semibold text-gray-900 mb-3">{{ f.title }}</h4>
-                    <p class="text-gray-600 leading-relaxed mb-6">{{ f.desc }}</p>
-                    <div class="flex items-center gap-2 text-sm font-medium text-green-700">
-                        <i
-                            class="pi pi-arrow-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
-                        <span>{{ f.highlight }}</span>
-                    </div>
-                </div>
-                }
-            </div>
+  <!-- Footer -->
+  <footer class="py-14 px-6 bg-slate-950 border-t border-slate-800/60">
+    <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-10">
+      <div>
+        <p class="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-4">Producto</p>
+        <ul class="space-y-3">
+          <li><a routerLink="/auth/register" class="text-sm text-slate-400 hover:text-white transition-colors duration-200">Registrarse</a></li>
+          <li><a routerLink="/auth/login" class="text-sm text-slate-400 hover:text-white transition-colors duration-200">Iniciar sesión</a></li>
+          <li><span class="text-sm text-slate-700 cursor-default">Precios</span></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-4">Recursos</p>
+        <ul class="space-y-3">
+          <li><span class="text-sm text-slate-700 cursor-default">Centro de ayuda</span></li>
+          <li><span class="text-sm text-slate-700 cursor-default">Blog</span></li>
+          <li><span class="text-sm text-slate-700 cursor-default">Estado</span></li>
+        </ul>
+      </div>
+      <div class="col-span-2 md:col-span-1">
+        <p class="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-4">Legal</p>
+        <ul class="space-y-3">
+          <li><span class="text-sm text-slate-700 cursor-default">Privacidad</span></li>
+          <li><span class="text-sm text-slate-700 cursor-default">Términos</span></li>
+          <li><span class="text-sm text-slate-700 cursor-default">Cookies</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="max-w-6xl mx-auto mt-10 pt-6 border-t border-slate-800/60 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <div class="w-5 h-5 bg-green-500 rounded flex items-center justify-center">
+          <i class="pi pi-verified text-white text-xs"></i>
         </div>
-    </section>
-
-    <!-- Reviews con blockquote -->
-    <section id="reviews"
-        class="relative py-24 md:py-32 px-6 bg-gradient-to-br from-green-800 to-green-900 scroll-mt-24">
-        <div class="absolute inset-0 overflow-hidden pointer-events-none">
-            <div class="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl"></div>
-            <div class="absolute bottom-0 left-0 w-80 h-80 bg-green-400/10 rounded-full blur-3xl"></div>
-        </div>
-        <div class="relative max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <h3 class="text-3xl md:text-4xl font-bold text-white mb-4">Lo que dicen los usuarios</h3>
-                <p class="text-lg text-green-200/70 max-w-xl mx-auto">
-                    Personas que ya recuperaron el control de sus préstamos
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                @for (r of reviews; track r.name; let i = $index) {
-                <div class="relative bg-white p-8 rounded-2xl shadow-lg border border-green-100/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 animate-fade-in-up flex flex-col h-full"
-                    [style.animation-delay]="i * 150 + 'ms'">
-                    <i class="pi pi-quote-left absolute top-6 right-6 text-green-100 text-3xl pointer-events-none"></i>
-                    <div class="flex items-center gap-1 mb-5">
-                        @for (star of [1,2,3,4,5]; track star) {
-                        <i class="pi pi-star-fill text-amber-400 text-sm"></i>
-                        }
-                    </div>
-                    <p class="text-gray-600 leading-relaxed mb-6 flex-1">
-                        "{{ r.content }}"
-                    </p>
-                    <div class="flex items-center gap-3 pt-4 border-t border-gray-100 mt-auto">
-                        <div class="w-9 h-9 rounded-full bg-gradient-to-br flex items-center justify-center text-white text-xs font-semibold shrink-0"
-                            [class]="r.gradient">
-                            {{ r.initials }}
-                        </div>
-                        <div class="overflow-hidden">
-                            <p class="text-sm font-semibold text-gray-900">{{ r.name }}</p>
-                            <p class="text-xs text-gray-500">{{ r.role }}</p>
-                        </div>
-                    </div>
-                </div>
-                }
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section id="cta" class="relative py-24 md:py-32 px-6 overflow-hidden scroll-mt-24">
-        <div class="absolute inset-0 bg-gradient-to-br from-emerald-700 to-green-950"></div>
-        <div class="absolute inset-0 opacity-20">
-            <div class="absolute top-0 left-1/4 w-96 h-96 bg-white/20 rounded-full blur-3xl"></div>
-            <div class="absolute bottom-0 right-1/4 w-[30rem] h-[30rem] bg-emerald-400/20 rounded-full blur-3xl"></div>
-        </div>
-        <div class="relative max-w-2xl mx-auto text-center">
-            <h3 class="text-3xl md:text-5xl font-bold text-white mb-4 leading-tight">
-                ¿Listo para tomar el control?
-            </h3>
-            <p class="text-green-200/80 mb-8 text-lg">
-                Crea tu cuenta gratis y empieza a registrar tus préstamos hoy mismo.
-            </p>
-            <a routerLink="/auth/register">
-                <p-button label="Crear cuenta gratis — es gratis" size="large" [outlined]="true" />
-            </a>
-            <p class="text-green-300/50 text-sm mt-5">
-                No requiere tarjeta de crédito. Cancela cuando quieras.
-            </p>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-14 px-6 bg-green-950 border-t border-green-800">
-        <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-8">
-            <div>
-                <p class="text-sm font-bold text-green-300 mb-4">Producto</p>
-                <ul class="space-y-2">
-                    <li><a routerLink="/auth/register"
-                            class="text-sm text-green-400/80 hover:text-green-300 transition-colors">Registrarse</a>
-                    </li>
-                    <li><a routerLink="/auth/login"
-                            class="text-sm text-green-400/80 hover:text-green-300 transition-colors">Iniciar sesión</a>
-                    </li>
-                    <li><span class="text-sm text-green-600/60 cursor-default">Precios</span></li>
-                </ul>
-            </div>
-            <div>
-                <p class="text-sm font-bold text-green-300 mb-4">Recursos</p>
-                <ul class="space-y-2">
-                    <li><span class="text-sm text-green-600/60 cursor-default">Centro de ayuda</span></li>
-                    <li><span class="text-sm text-green-600/60 cursor-default">Blog</span></li>
-                    <li><span class="text-sm text-green-600/60 cursor-default">Estado</span></li>
-                </ul>
-            </div>
-            <div class="col-span-2 md:col-span-1">
-                <p class="text-sm font-bold text-green-300 mb-4">Legal</p>
-                <ul class="space-y-2">
-                    <li><span class="text-sm text-green-600/60 cursor-default">Privacidad</span></li>
-                    <li><span class="text-sm text-green-600/60 cursor-default">Términos</span></li>
-                    <li><span class="text-sm text-green-600/60 cursor-default">Cookies</span></li>
-                </ul>
-            </div>
-        </div>
-        <div
-            class="max-w-6xl mx-auto mt-10 pt-6 border-t border-green-800 flex flex-col sm:flex-row items-center justify-between gap-2">
-            <p class="text-sm font-semibold text-green-300">Loan Monitoring</p>
-            <p class="text-sm text-green-600/60">© 2026 Todos los derechos reservados</p>
-        </div>
-    </footer>
+        <p class="text-sm font-semibold text-slate-300">Loan Monitoring</p>
+      </div>
+      <p class="text-sm text-slate-600">© 2026 Todos los derechos reservados</p>
+    </div>
+  </footer>
 
 </div>
