@@ -82,4 +82,5 @@ export class Landing {
       gradient: 'from-purple-400 to-violet-600',
     },
   ];
+
 }
