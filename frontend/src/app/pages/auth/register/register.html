@@ -28,31 +28,35 @@
           <!-- Username -->
           <div class="flex flex-col gap-1.5">
             <label class="text-sm font-medium text-slate-300">Usuario</label>
-            <input
-              pInputText
-              [(ngModel)]="username"
-              placeholder="Ingresa tu usuario"
+            <input pInputText [(ngModel)]="username" placeholder="Ingresa tu usuario"
               class="w-full !bg-slate-800 !border-slate-700 !text-white placeholder:!text-slate-500 !rounded-xl focus:!border-green-500 transition-colors duration-200" />
+          </div>
+
+          <!-- First name & Last name -->
+          <div class="flex gap-3">
+            <div class="flex flex-col gap-1.5 flex-1">
+              <label class="text-sm font-medium text-slate-300">Nombre</label>
+              <input pInputText [(ngModel)]="firstName" placeholder="Tu nombre"
+                class="w-full !bg-slate-800 !border-slate-700 !text-white placeholder:!text-slate-500 !rounded-xl focus:!border-green-500 transition-colors duration-200" />
+            </div>
+            <div class="flex flex-col gap-1.5 flex-1">
+              <label class="text-sm font-medium text-slate-300">Apellido</label>
+              <input pInputText [(ngModel)]="lastName" placeholder="Tu apellido"
+                class="w-full !bg-slate-800 !border-slate-700 !text-white placeholder:!text-slate-500 !rounded-xl focus:!border-green-500 transition-colors duration-200" />
+            </div>
           </div>
 
           <!-- Email -->
           <div class="flex flex-col gap-1.5">
             <label class="text-sm font-medium text-slate-300">Correo electrónico</label>
-            <input
-              pInputText
-              [(ngModel)]="email"
-              type="email"
-              placeholder="Ingresa tu correo"
+            <input pInputText [(ngModel)]="email" type="email" placeholder="Ingresa tu correo"
               class="w-full !bg-slate-800 !border-slate-700 !text-white placeholder:!text-slate-500 !rounded-xl focus:!border-green-500 transition-colors duration-200" />
           </div>
 
           <!-- Password -->
           <div class="flex flex-col gap-1.5">
             <label class="text-sm font-medium text-slate-300">Contraseña</label>
-            <p-password
-              [(ngModel)]="password"
-              [toggleMask]="true"
-              placeholder="Ingresa tu contraseña"
+            <p-password [(ngModel)]="password" [toggleMask]="true" placeholder="Ingresa tu contraseña"
               styleClass="w-full"
               inputStyleClass="w-full !bg-slate-800 !border-slate-700 !text-white placeholder:!text-slate-500 !rounded-xl">
             </p-password>
@@ -60,19 +64,17 @@
 
           <!-- Error -->
           @if (error) {
-            <div class="flex items-center gap-2 px-4 py-3 bg-red-500/10 border border-red-500/20 rounded-xl">
-              <i class="pi pi-exclamation-circle text-red-400 text-sm"></i>
-              <p class="text-sm text-red-400">{{ error }}</p>
-            </div>
+          <div class="flex items-center gap-2 px-4 py-3 bg-red-500/10 border border-red-500/20 rounded-xl">
+            <i class="pi pi-exclamation-circle text-red-400 text-sm"></i>
+            <p class="text-sm text-red-400">{{ error }}</p>
+          </div>
           }
 
           <!-- Button -->
-          <button
-            (click)="register()"
-            [disabled]="loading"
+          <button (click)="register()" [disabled]="loading"
             class="w-full mt-1 py-3 px-4 bg-green-500 hover:bg-green-400 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold rounded-xl transition-all duration-200 shadow-lg shadow-green-500/20 hover:-translate-y-0.5 flex items-center justify-center gap-2">
             @if (loading) {
-              <i class="pi pi-spin pi-spinner text-sm"></i>
+            <i class="pi pi-spin pi-spinner text-sm"></i>
             }
             Crear cuenta
           </button>
@@ -87,7 +89,8 @@
           <!-- Login link -->
           <p class="text-center text-sm text-slate-500">
             ¿Ya tienes cuenta?
-            <a routerLink="/auth/login" class="text-green-400 font-medium hover:text-green-300 transition-colors duration-200 ml-1">
+            <a routerLink="/auth/login"
+              class="text-green-400 font-medium hover:text-green-300 transition-colors duration-200 ml-1">
               Inicia sesión
             </a>
           </p>
