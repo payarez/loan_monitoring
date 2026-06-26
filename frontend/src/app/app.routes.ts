@@ -8,11 +8,14 @@ import { Settings } from './pages/settings/settings';
 import { Login } from './pages/auth/login/login';
 import { Register } from './pages/auth/register/register';
 import { Landing } from './pages/landing/landing';
+import { authGuard } from './guards/auth-guard';
+import { publicGuard } from './guards/public-guard';
 
 export const routes: Routes = [
     { path: '', component: Landing },
     {
         path: 'auth',
+        canActivate: [publicGuard],
         children: [
             { path: 'login', component: Login },
             { path: 'register', component: Register },
@@ -22,6 +25,7 @@ export const routes: Routes = [
     {
         path: 'app',
         component: MainLayout,
+        canActivate: [authGuard],
         children: [
             { path: 'dashboard', component: Dashboard },
             { path: 'loans', component: Loans },
