@@ -1,1 +1,163 @@
-<p>settings works!</p>
+<div class="flex flex-col gap-8 max-w-2xl mx-auto">
+
+  <!-- Page title -->
+  <div>
+    <h1 class="text-2xl font-bold text-gray-900">Configuración</h1>
+    <p class="text-gray-500 text-sm mt-1">Administra tu cuenta y preferencias</p>
+  </div>
+
+  <!-- Perfil -->
+  <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+    <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-5">Perfil</h2>
+    <div class="flex flex-col gap-4">
+      <div class="flex items-center justify-between py-3 border-b border-gray-100">
+        <div>
+          <p class="text-xs text-gray-400 mb-0.5">Usuario</p>
+          <p class="text-sm font-medium text-gray-900">{{ username }}</p>
+        </div>
+        <i class="pi pi-user text-gray-300"></i>
+      </div>
+      <div class="flex items-center justify-between py-3">
+        <div>
+          <p class="text-xs text-gray-400 mb-0.5">Correo electrónico</p>
+          <p class="text-sm font-medium text-gray-900">{{ email }}</p>
+        </div>
+        <i class="pi pi-envelope text-gray-300"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- Apariencia -->
+  <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+    <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-5">Apariencia</h2>
+    <div class="flex flex-col gap-5">
+
+      <!-- Tema -->
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm font-medium text-gray-900">Tema</p>
+          <p class="text-xs text-gray-400 mt-0.5">Selecciona el tema visual</p>
+        </div>
+        <div class="flex items-center gap-2">
+          @for (t of themeOptions; track t.value) {
+            <button
+              (click)="selectedTheme = t.value"
+              class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium border transition-all duration-200"
+              [class]="selectedTheme === t.value
+                ? 'bg-green-50 border-green-300 text-green-700'
+                : 'bg-gray-50 border-gray-200 text-gray-500 hover:border-gray-300'">
+              <i class="pi {{ t.icon }} text-xs"></i>
+              {{ t.label }}
+            </button>
+          }
+        </div>
+      </div>
+
+      <div class="h-px bg-gray-100"></div>
+
+      <!-- Idioma -->
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm font-medium text-gray-900">Idioma</p>
+          <p class="text-xs text-gray-400 mt-0.5">Selecciona el idioma de la interfaz</p>
+        </div>
+        <div class="flex items-center gap-2">
+          @for (l of languageOptions; track l.value) {
+            <button
+              (click)="selectedLanguage = l.value"
+              class="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium border transition-all duration-200"
+              [class]="selectedLanguage === l.value
+                ? 'bg-green-50 border-green-300 text-green-700'
+                : 'bg-gray-50 border-gray-200 text-gray-500 hover:border-gray-300'">
+              <span>{{ l.flag }}</span>
+              {{ l.label }}
+            </button>
+          }
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Seguridad -->
+  <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+    <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-5">Seguridad</h2>
+    <div class="flex flex-col gap-4">
+
+      <div class="flex flex-col gap-1.5">
+        <label class="text-sm font-medium text-gray-700">Contraseña actual</label>
+        <input
+          type="password"
+          [(ngModel)]="oldPassword"
+          placeholder="Ingresa tu contraseña actual"
+          class="w-full bg-gray-50 border border-gray-200 text-gray-900 placeholder:text-gray-400 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-green-400 transition-colors duration-200" />
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <label class="text-sm font-medium text-gray-700">Nueva contraseña</label>
+        <input
+          type="password"
+          [(ngModel)]="newPassword"
+          placeholder="Ingresa tu nueva contraseña"
+          class="w-full bg-gray-50 border border-gray-200 text-gray-900 placeholder:text-gray-400 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-green-400 transition-colors duration-200" />
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <label class="text-sm font-medium text-gray-700">Confirmar contraseña</label>
+        <input
+          type="password"
+          [(ngModel)]="confirmPassword"
+          placeholder="Confirma tu nueva contraseña"
+          class="w-full bg-gray-50 border border-gray-200 text-gray-900 placeholder:text-gray-400 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-green-400 transition-colors duration-200" />
+      </div>
+
+      @if (errorPassword) {
+        <div class="flex items-center gap-2 px-4 py-3 bg-red-50 border border-red-200 rounded-xl">
+          <i class="pi pi-exclamation-circle text-red-400 text-sm"></i>
+          <p class="text-sm text-red-500">{{ errorPassword }}</p>
+        </div>
+      }
+
+      @if (successPassword) {
+        <div class="flex items-center gap-2 px-4 py-3 bg-green-50 border border-green-200 rounded-xl">
+          <i class="pi pi-check-circle text-green-500 text-sm"></i>
+          <p class="text-sm text-green-600">{{ successPassword }}</p>
+        </div>
+      }
+
+      <button
+        (click)="changePassword()"
+        [disabled]="loadingPassword"
+        class="self-start flex items-center gap-2 px-5 py-2.5 bg-green-600 hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm font-semibold rounded-xl transition-all duration-200 shadow-sm shadow-green-200">
+        @if (loadingPassword) {
+          <i class="pi pi-spin pi-spinner text-sm"></i>
+        }
+        Actualizar contraseña
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Sesión -->
+  <div class="bg-white border border-red-100 rounded-2xl p-6 shadow-sm">
+    <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-5">Sesión</h2>
+    <div class="flex items-center justify-between">
+      <div>
+        <p class="text-sm font-medium text-gray-900">Cerrar sesión</p>
+        <p class="text-xs text-gray-400 mt-0.5">Salir de tu cuenta en este dispositivo</p>
+      </div>
+      <button
+        (click)="logout()"
+        [disabled]="loadingLogout"
+        class="flex items-center gap-2 px-5 py-2.5 bg-red-50 hover:bg-red-100 border border-red-200 hover:border-red-300 disabled:opacity-50 text-red-500 text-sm font-semibold rounded-xl transition-all duration-200">
+        @if (loadingLogout) {
+          <i class="pi pi-spin pi-spinner text-sm"></i>
+        } @else {
+          <i class="pi pi-sign-out text-sm"></i>
+        }
+        Cerrar sesión
+      </button>
+    </div>
+  </div>
+
+</div>

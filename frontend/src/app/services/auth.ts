@@ -10,7 +10,7 @@ export class AuthService {
 
   private baseUrl = 'http://localhost:8000/api/auth';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
   register(data: { username: string; email: string; password: string }) {
     return this.http.post(`${this.baseUrl}/register/`, data);
@@ -49,5 +49,9 @@ export class AuthService {
 
   getRefreshToken(): string | null {
     return localStorage.getItem('refresh');
+  }
+
+  changePassword(old_password: string, new_password: string) {
+    return this.http.post(`${this.baseUrl}/change-password/`, { old_password, new_password });
   }
 }
