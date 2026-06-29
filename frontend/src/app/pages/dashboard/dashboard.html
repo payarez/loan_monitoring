@@ -58,8 +58,8 @@
             </ng-template>
             <ng-template #body let-loan>
                 <tr>
-                    <td>{{ loan.item }}</td>
-                    <td>{{ loan.borrower }}</td>
+                    <td>{{ loan.item_name }}</td>
+                    <td>{{ loan.borrower_name }}</td>
                     <td>{{ loan.lent_at | date:'dd/MM/yyyy' }}</td>
                     <td>{{ loan.due_at | date:'dd/MM/yyyy' }}</td>
                     <td>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
@@ -7,6 +7,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
+import { ApiService } from '../../services/api';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,12 +15,12 @@ import { InputTextModule } from 'primeng/inputtext';
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
-export class Dashboard {
+export class Dashboard implements OnInit {
   activeLoans = 0;
   overdueLoans = 0;
   returnedLoans = 0;
-
   recentLoans: any[] = [];
+  loading = true;
 
   selectedFilter = 'all';
   searchQuery = '';
@@ -31,18 +32,57 @@ export class Dashboard {
     { label: 'A tiempo', value: 'active' },
   ];
 
+  constructor(private apiService: ApiService, private cdr: ChangeDetectorRef) {}
+
+  ngOnInit() {
+    this.loadData();
+  }
+
+  loadData() {
+    this.loading = true;
+
+    this.apiService.getLoans('active').subscribe({
+      next: (res: any) => {
+        this.activeLoans = res.results?.length ?? res.length ?? 0;
+        this.cdr.detectChanges();
+      }
+    });
+
+    this.apiService.getLoans('overdue').subscribe({
+      next: (res: any) => {
+        this.overdueLoans = res.results?.length ?? res.length ?? 0;
+        this.cdr.detectChanges();
+      }
+    });
+
+    this.apiService.getLoans('returned').subscribe({
+      next: (res: any) => {
+        this.returnedLoans = res.results?.length ?? res.length ?? 0;
+        this.cdr.detectChanges();
+      }
+    });
+
+    this.apiService.getLoans().subscribe({
+      next: (res: any) => {
+        this.recentLoans = res.results ?? res;
+        this.loading = false;
+        this.cdr.detectChanges();
+      }
+    });
+  }
+
   get filteredLoans() {
     let loans = this.recentLoans;
 
     if (this.selectedFilter !== 'all') {
-      loans = loans.filter(l => l.status === this.selectedFilter);
+      loans = loans.filter((l: any) => l.status === this.selectedFilter);
     }
 
     if (this.searchQuery.trim()) {
       const q = this.searchQuery.toLowerCase();
-      loans = loans.filter(l =>
-        l.item?.toLowerCase().includes(q) ||
-        l.borrower?.toLowerCase().includes(q)
+      loans = loans.filter((l: any) =>
+        l.item?.toString().toLowerCase().includes(q) ||
+        l.borrower?.toString().toLowerCase().includes(q)
       );
     }
 
