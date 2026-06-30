@@ -12,10 +12,11 @@ class LoanSerializer(serializers.ModelSerializer):
     status = serializers.SerializerMethodField()
     item_name = serializers.CharField(source='item.name', read_only=True)
     borrower_name = serializers.CharField(source='borrower.name', read_only=True)
+    category_name = serializers.CharField(source='item.category.name', read_only=True)
 
     class Meta:
         model = Loan
-        fields = ['id', 'item', 'item_name', 'borrower', 'borrower_name', 'lent_at', 'due_at', 'returned_at', 'notes', 'status', 'photos', 'is_deleted', 'created_at']
+        fields = ['id', 'item', 'item_name', 'borrower', 'borrower_name', 'category_name', 'lent_at', 'due_at', 'returned_at', 'notes', 'status', 'photos', 'is_deleted', 'created_at']
         read_only_fields = ['id', 'created_at', 'status']
 
     def get_status(self, obj):
