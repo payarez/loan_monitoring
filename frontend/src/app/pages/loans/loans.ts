@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
@@ -44,7 +44,7 @@ export class Loans implements OnInit {
     };
 
 
-  constructor(private apiService: ApiService, private confirmationService: ConfirmationService) { }
+  constructor(private apiService: ApiService, private confirmationService: ConfirmationService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.loadLoans();
@@ -58,19 +58,26 @@ export class Loans implements OnInit {
       next: (res: any) => {
         this.loans = res.results ?? res;
         this.loading = false;
+        this.cdr.detectChanges();
       }
     });
   }
 
   loadItems() {
     this.apiService.getItems().subscribe({
-      next: (res: any) => this.items = res.results ?? res
+      next: (res: any) => {
+        this.items = res.results ?? res;
+        this.cdr.detectChanges();
+      }
     });
   }
 
   loadBorrowers() {
     this.apiService.getBorrowers().subscribe({
-      next: (res: any) => this.borrowers = res.results ?? res
+      next: (res: any) => {
+        this.borrowers = res.results ?? res;
+        this.cdr.detectChanges();
+      }
     });
   }
 

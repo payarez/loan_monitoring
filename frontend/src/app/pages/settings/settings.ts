@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth';
 import { CommonModule } from '@angular/common';
@@ -9,21 +9,15 @@ import { CommonModule } from '@angular/common';
   templateUrl: './settings.html',
   styleUrl: './settings.css',
 })
-export class Settings {
-  // Perfil
+export class Settings implements OnInit {
+
   username = '';
   email = '';
-
-  // Apariencia
-  selectedTheme = 'dark';
+  selectedTheme = 'light';
   selectedLanguage = 'es';
-
-  // Seguridad
   oldPassword = '';
   newPassword = '';
   confirmPassword = '';
-
-  // Estados
   loadingLogout = false;
   loadingPassword = false;
   errorPassword = '';
@@ -39,15 +33,16 @@ export class Settings {
     { label: 'English', value: 'en', flag: '🇺🇸' },
   ];
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.authService.getProfile().subscribe({
       next: (res: any) => {
         this.username = res.username;
         this.email = res.email;
-        this.selectedTheme = res.theme || 'dark';
+        this.selectedTheme = res.theme || 'light';
         this.selectedLanguage = res.language || 'es';
+        this.cdr.detectChanges();
       }
     });
   }
@@ -75,10 +70,12 @@ export class Settings {
         this.newPassword = '';
         this.confirmPassword = '';
         this.loadingPassword = false;
+        this.cdr.detectChanges();
       },
       error: (err) => {
         this.errorPassword = err.error?.error || 'Error al cambiar la contraseña';
         this.loadingPassword = false;
+        this.cdr.detectChanges();
       }
     });
   }
